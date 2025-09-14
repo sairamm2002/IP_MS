@@ -1,0 +1,30 @@
+@model IEnumerable<MetricSystem.Models.TempConversion>
+
+<div class="container py-5">
+  <h1 class="mb-4">Recent Conversions</h1>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Direction</th>
+          <th>Input</th>
+          <th>Result</th>
+          <th>Created (UTC)</th>
+        </tr>
+      </thead>
+      <tbody>
+      @foreach (var r in Model)
+      {
+        <tr>
+          <td>@r.Id</td>
+          <td>@r.Direction</td>
+          <td>@r.Input</td>
+          <td>@r.Result</td>
+          <td>@r.CreatedUtc.ToString("u")</td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+</div>

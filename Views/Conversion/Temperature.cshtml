@@ -1,0 +1,30 @@
+@model ConversionViewModel
+@{
+    ViewData["Title"] = "Fahrenheit Conversion";
+}
+<div class="container py-5">
+  <h1 class="mb-4">Fahrenheit Conversion</h1>
+   <form asp-action="Temperature" method="post" class="row gy-3 col-lg-8">
+    @Html.AntiForgeryToken()
+
+    <!-- Fahrenheit input -->
+    <div class="col-12">
+      <label asp-for="Input" class="form-label">Fahrenheit Value</label>
+      <input asp-for="Input" class="form-control" />
+      <span asp-validation-for="Input" class="text-danger"></span>
+    </div>
+
+    <!-- Celsius output (readonly) -->
+    <div class="col-12">
+      <label class="form-label">Celsius Value</label>
+      <input class="form-control" value="@(Model.Result?.ToString("0.########"))" readonly />
+    </div>
+
+    <div class="col-12 d-flex gap-2">
+      <button type="submit" class="btn btn-dark">Convert</button>
+      <a asp-action="Temperature" class="btn btn-outline-dark">Clear</a>
+    </div>
+  </form>
+</div>
+
+</div>

@@ -1,0 +1,98 @@
+/* Base */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+               "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* =========================
+   NAVBAR: brand | menu | actions
+   ========================= */
+.nav-wrap-3col {
+  display: grid;
+  grid-template-columns: auto 1fr auto;   /* brand | menu | actions */
+  align-items: center;
+  gap: 0.75rem;
+  padding-block: 0.75rem;
+  position: relative;
+}
+
+/* Hide checkbox */
+.nav-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 0; height: 0; position: absolute; opacity: 0;
+}
+
+/* Hamburger button (small screens) */
+.nav-toggle-label {
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  line-height: 1;
+  grid-column: 3; /* near actions on mobile */
+}
+
+/* Left-aligned menu: collapses by default on small screens */
+.nav-menu {
+  list-style: none;
+  padding-left: 0; margin: 0;
+  display: none;             /* hidden until toggled */
+  flex-direction: column;    /* vertical stack on mobile */
+  gap: 0.25rem;
+  grid-column: 1 / -1;       /* span full width under brand on mobile */
+}
+.nav-menu .nav-link { color: #0d6efd; padding: 0.5rem 0.25rem; }
+.nav-menu .nav-link:hover { text-decoration: underline; }
+
+/* Right actions container */
+.nav-actions { justify-self: end; }
+
+/* Toggle menu open (CSS-only) */
+.nav-toggle:checked ~ .nav-menu { display: flex; }
+
+/* ≥992px: show horizontal left menu, hide hamburger, keep actions right */
+@media (min-width: 992px) {
+  .nav-toggle-label { display: none; }
+  .nav-menu {
+    display: flex !important;
+    grid-column: 2;          /* the middle column */
+    flex-direction: row;     /* horizontal */
+    align-items: center;
+    justify-content: flex-start; /* <-- LEFT aligned */
+    gap: 0.75rem;
+  }
+}
+
+/* =========================
+   HERO: new color combination
+   ========================= */
+/* subtle glass card */
+.hero-card { backdrop-filter: blur(3px); background: rgba(255,255,255,0.75); border: 0; border-radius: 1rem; }
+
+/* alternative gradient palette (different from the screenshot’s teal/blue):
+   warm coral -> orchid with a soft overlay */
+.alt-gradient {
+  --g1: #ffb199;   /* coral-peach */
+  --g2: #ff0844;   /* vivid coral-red */
+  --g3: #8e54e9;   /* orchid-violet */
+  --g4: #4776e6;   /* azure-indigo */
+  background:
+    radial-gradient(35% 60% at 20% 20%, color-mix(in srgb, var(--g1) 70%, white) 0%, transparent 70%),
+    radial-gradient(45% 70% at 80% 10%, color-mix(in srgb, var(--g3) 65%, white) 0%, transparent 72%),
+    linear-gradient(135deg, var(--g2) 0%, var(--g3) 55%, var(--g4) 100%);
+}
+
+/* hero sizing */
+.hero {
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+  padding: 2.5rem 1rem;
+}
+
+/* Tables remain responsive */
+.table-responsive { overflow-x: auto; }
+
+/* Minor link tweak */
+.navbar-brand { color: inherit; }
